@@ -7,36 +7,49 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Serve static files from "public"
+// Serve static files from "public" folder
 app.use(express.static(path.join(__dirname, "public")));
 
-// Main route for homepage
+// Home route
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Route to serve room.html directly
+// Room route
 app.get("/room.html", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "room.html"));
 });
 
-// Socket.io real-time connection
+// Socket.IO logic
 io.on("connection", (socket) => {
+  // User joins a room
   socket.on("join-room", (roomId) => {
     socket.join(roomId);
+
+    // Notify others in the room
     socket.to(roomId).emit("user-connected");
 
+    // Relay message to room
     socket.on("message", (msg) => {
       socket.to(roomId).emit("message", msg);
     });
 
-    socket.on("disconnect", () => {
+    // Handle user manually ending the call
+    socket.on("end-call", (roomId) => {
       socket.to(roomId).emit("user-disconnected");
+    });
+
+    // Handle user closing browser/tab
+    socket.on("disconnect", () => {
+      const rooms = [...socket.rooms];
+      rooms.forEach((room) => {
+        socket.to(room).emit("user-disconnected");
+      });
     });
   });
 });
 
-// Use dynamic port (for Render)
+// Start server (Render will inject PORT)
 const PORT = process.env.PORT || 10000;
 server.listen(PORT, () => {
   console.log(`✅ Server is running on port ${PORT}`);
