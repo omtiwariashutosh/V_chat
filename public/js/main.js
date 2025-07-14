@@ -1,12 +1,10 @@
 let currentRoomLink = "";
 
-// Generate a random room link and show modal
 function generateRoomLink() {
   const roomId = Math.random().toString(36).substr(2, 9);
-  currentRoomLink = `${window.location.origin}/room.html?room=${roomId}`;
+  const link = `${window.location.origin}/room.html?room=${roomId}`;
 
-  // Set the link in the input field and show modal
-  document.getElementById("linkInput").value = currentRoomLink;
+  document.getElementById("linkInput").value = link;
   document.getElementById("linkModal").style.display = "flex";
 }
 
