@@ -1,0 +1,220 @@
+/* ========== GLOBAL STYLES ========== */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fdfdfd;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ========== HEADER ========== */
+
+.logo-img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+}
+
+.user-icon i {
+  color: #343a40; /* Bootstrap text-dark */
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.user-icon i:hover {
+  color: #288683; /* Bootstrap primary color on hover */
+  cursor: pointer;
+}
+
+/* ========== HERO SECTION (Home) ========== */
+/* ======= Hero Section ======= */
+
+.hero-section {
+  min-height: 85vh;
+  background: linear-gradient(to right, #ffffff, #ffffff);
+  color: #645252;
+  padding: 80px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-text {
+  max-width: 600px;
+  color: #000;
+  font-family: "EB Garamond", serif;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  opacity: 0.95;
+  margin-bottom: 1.5rem;
+}
+
+/* Call Button */
+.call-btn {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+  font-family: "";
+  background: linear-gradient(120deg, #288683, #1e5552);
+  background-size: 200% auto;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.call-btn i {
+  margin-right: 8px;
+}
+
+.call-btn:hover {
+  background-position: right center; /* Animate from left to right */
+  transform: scale(1.05);
+  font-family: "";
+  color: #fff;
+}
+
+/* ========== POPUP ========== */
+.modal-backdrop-custom {
+  display: none;
+  position: fixed;
+  z-index: 1050;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(33, 37, 41, 0.75); /* dark Bootstrap bg-dark-75 */
+  backdrop-filter: blur(3px);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.modal-box {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  padding: 24px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.35s ease-in-out;
+  transform: translateY(10px);
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modal-header h5 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.35rem;
+  color: #000000;
+  transition: color 0.2s ease-in-out;
+}
+
+.btn-close:hover {
+  color: #ff0000;
+  cursor: pointer;
+}
+
+.modal-body input {
+  font-size: 0.95rem;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  outline: none;
+}
+
+.modal-body input:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.modal-body button {
+  font-weight: 500;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.modal-body button:hover {
+  background-color: #0b5ed7;
+}
+
+/* Animations */
+@keyframes slideUp {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(33, 37, 41, 0.75);
+  }
+}
+
+/* ========== POPUP ========== */
+/* ========== FOOTER ========== */
+footer {
+  font-size: 0.95rem;
+  color: #666;
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 15px;
+  border-top: 1px solid #dee2e6;
+}
+
+/* ========== MEDIA QUERIES ========== */
+@media (max-width: 768px) {
+  .hero-section {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .user-icon {
+    display: none;
+  }
+}
