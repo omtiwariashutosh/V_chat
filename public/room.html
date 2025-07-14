@@ -15,34 +15,47 @@
 </head>
 
 <body>
-    <div class="room-wrapper">
+    <div class="room-wrapper d-flex flex-column flex-md-row">
+
         <!-- Left: Video Area -->
-        <div class="video-area">
-            <div class="video-box"><video autoplay muted></video></div>
-            <div class="video-box"><video autoplay></video></div>
+        <div class="video-area d-flex flex-column justify-content-center align-items-center p-3">
+            <div class="video-box mb-3">
+                <video id="localVideo" autoplay muted playsinline></video>
+            </div>
+            <div class="video-box">
+                <video id="remoteVideo" autoplay playsinline></video>
+            </div>
         </div>
 
         <!-- Right: Chat Area -->
-        <div class="chat-area">
-            <div class="chat-header d-flex align-items-center gap-2">
+        <div class="chat-area d-flex flex-column p-3">
+            <!-- Chat Header -->
+            <div class="chat-header d-flex align-items-center gap-2 mb-3">
                 <i class="fas fa-comments fs-5 text-primary"></i>
-                <span class="chat-title">Live Chat Room</span>
+                <h5 class="chat-title mb-0">Live Chat Room</h5>
             </div>
-            <div class="chat-body" id="messagesBox"></div>
-            <div class="chat-footer">
+
+            <!-- Chat Messages -->
+            <div class="chat-body flex-grow-1 mb-3" id="messagesBox"></div>
+
+            <!-- Chat Footer -->
+            <div class="chat-footer d-flex gap-2">
                 <input type="text" id="chatInput" class="form-control" placeholder="Type a message..." />
-                <button class="btn send-btn" onclick="sendMessage()">
+                <button class="btn send-btn btn-primary" onclick="sendMessage()" aria-label="Send message">
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </div>
 
+            <!-- End Call -->
             <div class="text-center mt-3">
                 <button class="btn btn-danger end-call-btn" onclick="endCall()">End Call</button>
             </div>
         </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/room.js"></script>
     <script>
         document.getElementById("chatInput").addEventListener("keydown", function (e) {
             if (e.key === "Enter") sendMessage();
